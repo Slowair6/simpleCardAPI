@@ -27,7 +27,7 @@ router.get('/pay', function (req, res, next) {
                     var data = {success: false, detail: "ข้อมูลบัตรไม่ถูกต้อง"};
                     res.json(data);
                 } else {
-                    foundACC.balance = foundACC.balance - req.query.amount;
+                    foundACC.balance = Number(foundACC.balance) - Number(req.query.amount);
                     foundACC.save(function (err, updateObject) {
                         if (err) {
                             console.log(err);
@@ -65,7 +65,7 @@ router.get('/return', function (req, res, next) {
                     var data = {success: false, detail: "ข้อมูลบัตรไม่ถูกต้อง"};
                     res.json(data);
                 } else {
-                    foundACC.balance = foundACC.balance + req.query.amount;
+                    foundACC.balance = Number(foundACC.balance) + Number(req.query.amount);
                     foundACC.save(function (err, updateObject) {
                         if (err) {
                             console.log(err);
